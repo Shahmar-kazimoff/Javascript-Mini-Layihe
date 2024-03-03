@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
+        integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Wishlist</title>
+</head>
+
+<body>
+    <header style="background-color: white;">
+        <nav id="navbar" class="navbar navbar-expand-lg">
+            <div class="container-fluid layout  position-relative">
+                <a style="color:#333333;font-weight: 500;" class="navbar-brand" href="./index.html"><span
+                        style="color:#333333;font-weight: 800;">COZA</span>
+                    STORE
+                </a>
+                <form class="d-flex">
+                    <div class="cart">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-cart-shopping "></i>
+                        <span class="counting" id="cart-count">0</span>
+                        <a href="wishlist.html" style="position: relative;font-size: 0px;cursor: pointer;"
+                            class="wishlist-navbar">
+                            <i class="fa-regular fa-heart heart-edit-first"></i>
+                            <span class="counting-wishlist" id="wishlist-count">0</span>
+                        </a>
+                        <div id="sidebar">
+                            <a href="#" class="close-btn">&times;</a>
+                            <div id="cart-items"></div>
+                            <div style="margin-bottom: 50px;position: relative;">
+                                <div class="cart-total">Total :
+                                    <span id="total-price">0</span>
+                                </div>
+                                <div style="display: flex;justify-content: space-evenly;">
+                                    <button id="delete-all">DELETE ALL</button>
+                                    <button class="checkout-button">
+                                        <a style="color: white;" href="./checkout.html">CHECK OUT
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="layout">
+            <h1 class="title-part" style="margin-left: 15px; font-weight: 700;">Checkout</h1>
+            <div id="checkout-items" class="products layout"></div>
+            <div class="cart-total">
+                total: <span id="checkout-total-price">0</span>
+            </div>
+            <button id="checkout-delete-all" onclick="clearCart(); DisplayCheckout(); UpdateCartCount();">delete
+                all</button>
+        </section>
+    </main>
+    <footer class="bg3 p-t-75 p-b-32">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <ul style="padding: 0;margin-bottom: 30px;">
+                        <li class="p-b-10">
+                            <h4 class="stext-301 cl0 p-b-30">
+                                Categories
+                            </h4>
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Women
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Men
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Shoes
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Watches
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <ul style="padding: 0;margin-bottom: 30px;">
+                        <li class="p-b-10">
+                            <h4 class="stext-301 cl0 p-b-30">
+                                Help
+                            </h4>
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Track Order
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Returns
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                Shipping
+                            </a>
+                        </li>
+                        <li class="p-b-10">
+                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                                FAQs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        GET IN TOUCH
+                    </h4>
+                    <p style="color: #B2B2B2;" class="stext-107 cl7 size-201">
+                        Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us
+                        on (+1) 96 716 6879
+                    </p>
+                    <div class="p-t-27" style="display: flex;gap:20px">
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa-brands fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Newsletter
+                    </h4>
+                    <form>
+                        <div class="wrap-input1 w-full p-b-4">
+                            <input
+                                style="background-color: #222222;border: none;border-bottom:1px solid white;margin-bottom: 20px;"
+                                class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
+                                placeholder="email@example.com">
+                            <div class="focus-input1 trans-04"></div>
+                        </div>
+                        <div class="p-t-18">
+                            <a style="white-space: nowrap;cursor: pointer;text-decoration: none;color:white;font-size: 15px;border-radius: 50px;background-color: #727FE0;padding: 7px 35px;"
+                                href="#" class="boxed-btn3 button-bottom">SHOP NOW</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div style="margin-top: 50px;text-align: center;" class="p-t-40">
+                <div style="margin-bottom: 20px;" class="flex-c-m flex-w p-b-18">
+                    <a href="#" class="m-all-1">
+                        <img style="width: 35px;"
+                            src="https://preview.colorlib.com/theme/cozastore/images/icons/icon-pay-01.png.webp"
+                            alt="ICON-PAY">
+                    </a>
+                    <a href="#" class="m-all-1">
+                        <img style="width: 35px;"
+                            src="https://preview.colorlib.com/theme/cozastore/images/icons/icon-pay-02.png.webp"
+                            alt="ICON-PAY">
+                    </a>
+                    <a href="#" class="m-all-1">
+                        <img style="width: 35px;"
+                            src="https://preview.colorlib.com/theme/cozastore/images/icons/icon-pay-03.png.webp"
+                            alt="ICON-PAY">
+                    </a>
+                    <a href="#" class="m-all-1">
+                        <img style="width: 35px;"
+                            src="https://preview.colorlib.com/theme/cozastore/images/icons/icon-pay-04.png.webp"
+                            alt="ICON-PAY">
+                    </a>
+                    <a href="#" class="m-all-1">
+                        <img style="width: 35px;"
+                            src="https://preview.colorlib.com/theme/cozastore/images/icons/icon-pay-05.png.webp"
+                            alt="ICON-PAY">
+                    </a>
+                </div>
+                <p style="color: #B2B2B2;font-size: 13px;text-align: center;" class="stext-107 cl6 txt-center">
+                    Copyright © 2024 All rights reserved | This template
+                    is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                        target="_blank">Colorlib</a>
+
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="./script.js"></script>
+    <script src="./header.js"></script>
+    <script src="./checkout.js"></script>
+</body>
+
+</html>
