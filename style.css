@@ -305,13 +305,12 @@ h4 {
 }
 
 #checkout-delete-all {
-    background-color: #717FE0;
+    background-color: #222222;
     margin-left: 5px;
     border-radius: 5px;
     font-size: 20px;
     padding: 5px 100px;
     margin-bottom: 20px;
-    text-align: end;
 
 }
 
@@ -411,6 +410,7 @@ h4 {
     transform: translateY(0px);
 }
 
+
 .card-secinfo {
     position: relative;
     top: 20px;
@@ -446,14 +446,57 @@ h4 {
     text-align: center;
 }
 
+.modal-details {
+    width: 100%;
+    font-size: 50px;
+    cursor: pointer;
+    top: 7%;
+}
+
+
+.modal-main {
+    margin-bottom: 80px;
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    align-items: center !important;
+    text-align: center;
+    align-items: center;
+}
+
+.modal-main-h3 {
+    font-size: 30px;
+}
+
+.modal-main-img {
+    width: 25%;
+}
+
+.modal-main-p {
+    font-size: 35px;
+}
+
 
 @media screen and (max-width: 500px) {
+    .modal-main-h3 {
+        font-size: 15px !important;
+    }
+
+    .modal-main {
+        gap: 1%
+    }
+
+    .modal-main-p {
+        font-size: 20px;
+    }
+
     h3 {
         font-size: 10px !important;
     }
 
     .card-sec {
         height: 100px !important;
+        flex-direction: column;
     }
 
     .card-sec .infoo span {
@@ -462,9 +505,21 @@ h4 {
     }
 
     .card-sec .infoo {
+        margin: 0 auto !important;
         bottom: 15px;
         line-height: 5px;
     }
+
+    .card-sec .info .btn {
+        font-size: 10px !important;
+        text-decoration: none;
+        align-items: center;
+        padding: 0;
+        white-space: nowrap;
+        margin-left: 22% !important;
+        text-decoration: underline;
+    }
+
 
 
     .title-part {

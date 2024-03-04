@@ -97,7 +97,7 @@ function renderProductsHTML(productlist) {
     productlist.forEach((product) => {
         html += `
             <div class="card" data-id="${product.id}">
-                <img src="${product.image}" alt="">
+                <img onclick="openModal(${product.id})" src="${product.image}" alt="">
                 <h3>${product.name}</h3>
                 <p>$${product.price}</p>
                 <button class="add-to-cart" onclick="addToCart(${product.id}); UpdateCartCount(); DisplayCart();">
@@ -115,4 +115,26 @@ function renderProductsHTML(productlist) {
     });
 
     return html;
+}
+
+function openModal(productId) {
+    const productDetails = getProductDetails(productId);
+
+    if (productDetails) {
+        const modalContent = document.getElementById("modalContent");
+        modalContent.innerHTML = `
+            <img class="modal-main-img" src="${productDetails.image}" alt="">
+            <h3 class="modal-main-h3">${productDetails.name}</h3>
+            <p class="modal-main-p">$${productDetails.price}</p>
+        `;
+
+        const modal = document.getElementById("productModal");
+        modal.style.display = "block";
+    }
+}
+
+// Function to close the modal
+function closeModal() {
+    const modal = document.getElementById("productModal");
+    modal.style.display = "none";
 }
